@@ -16,6 +16,10 @@
     justify-content: center;
     align-items: center; */
 }
+.rightItem2{
+    height:100%;
+    /* background-color: blue; */
+}
 .profileContainer{
     /* border: 4px solid pink; */
 }
@@ -34,4 +38,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media (min-width:550px) {
+    .rightItem2{
+        display: none;
+    }
+}
+@media (max-width: 550px) {
+    .rightItem1{
+        display: none;
+    }
+    .menu{
+        font-size:2.5em;
+        margin-top:20px;
+        cursor:pointer;
+    }
+    .closeMenu{
+        font-size:2.5em;
+        margin-top:20px;
+        cursor:pointer;
+    }
 }

@@ -1,18 +1,24 @@
 import styled from 'styled-components';
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineMenu } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
 
 import styles from '../../styles/Header.module.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Dropdown from '../Dropdown';
 import Menu from '../Menu';
 
 const Header = ()=>{
+    const header = useRef();
     const [loggedIn, setLoggedIn]=useState(true);
-
+    const [activeMenu,setActiveMenu]=useState(false);
+    const menuActive = (e)=>{
+        console.log('menu clicked!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        setActiveMenu(!activeMenu);
+    };
     return(
-        <HeaderContainer>
+        <HeaderContainer ref={header}>
             <Wrap>
                 <div className={styles.leftContainer}>
                     <div className={styles.leftItem1}>
@@ -33,14 +39,12 @@ const Header = ()=>{
                                 </div>
                             </Dropdown>
                         </div>
-                        <div className={styles.rightItem2}>
-                            <AiOutlineMenu></AiOutlineMenu>
-                            <Menu>
+                        <div className={`center ${styles.rightItem2}`}>
+                            {!activeMenu&&<AiOutlineMenu className={styles.menu} onClick={menuActive}></AiOutlineMenu>}
+                            {activeMenu&&<GrClose className={styles.closeMenu} onClick={menuActive}></GrClose>}
+                            <Menu topParent={header} activeMenu={activeMenu}>
                             </Menu>
                         </div>
-                        {/* <div className={styles.rightItem2}>
-                            <AiOutlineMenu></AiOutlineMenu>
-                        </div> */}
                     </div>
                 }
             </Wrap>
@@ -50,6 +54,7 @@ const Header = ()=>{
 const HeaderContainer = styled.div`
     padding-left:50px;
     padding-right:50px;
+    z-index:9999;
     // border:5px solid pink;
 `;
 const Wrap = styled.div`
