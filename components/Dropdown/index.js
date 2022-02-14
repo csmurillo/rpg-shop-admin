@@ -1,20 +1,27 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Dropdown = ({children})=>{
+    const dropdownClickable = useRef();
     const [dropdownActive,setdropdownActive]=useState(false);
     const dropdownClick = (e)=>{
         setdropdownActive(!dropdownActive);
     };
     useEffect(()=>{
-        window.addEventListener('click',(e)=>{
-            // console.log(e.target.parents('dropdownClickable'));
-        });
-        
+        function dropdownClickableListener(e){
+            if(!dropdownClickable.current.contains(e.target)){
+                setdropdownActive(false);
+            }
+        };
+        window.addEventListener('click',dropdownClickableListener);
+        return () => {
+            console.log("cleaned up");
+            window.removeEventListener('click', dropdownClickableListener)
+        };
     },[]);
     return (
         <DropdownContainer>
-            <div id="dropdownClickable" onClick={dropdownClick} onBlur={()=>{console.log('blur');}}>
+            <div ref={dropdownClickable} onClick={dropdownClick} onBlur={()=>{console.log('blur');}}>
                 {children}
             </div>
             <DropdownItems dropdownActive={dropdownActive}>

@@ -6,6 +6,7 @@ import styles from '../../styles/Header.module.css';
 import { useState } from 'react';
 
 import Dropdown from '../Dropdown';
+import Menu from '../Menu';
 
 const Header = ()=>{
     const [loggedIn, setLoggedIn]=useState(true);
@@ -31,6 +32,11 @@ const Header = ()=>{
                                     </div>
                                 </div>
                             </Dropdown>
+                        </div>
+                        <div className={styles.rightItem2}>
+                            <AiOutlineMenu></AiOutlineMenu>
+                            <Menu>
+                            </Menu>
                         </div>
                         {/* <div className={styles.rightItem2}>
                             <AiOutlineMenu></AiOutlineMenu>
