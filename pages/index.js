@@ -1,14 +1,14 @@
+import Header from '../components/Header';
+import Login from './components/Login'
 import styled from 'styled-components';
 
-export default () => (
-  <div>
-    <Title>My First Next.js Page</Title>
-  </div>
+const Main = ()=>(
+  <>
+    <Header></Header>
+    <Login></Login>
+  </>
 );
 
-const Title = styled.h1`
-  color: red;
-`;
 
 
-
+export default Main;
