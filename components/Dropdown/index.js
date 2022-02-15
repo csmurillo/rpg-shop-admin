@@ -21,7 +21,7 @@ const Dropdown = ({children})=>{
     },[]);
     return (
         <DropdownContainer>
-            <div ref={dropdownClickable} onClick={dropdownClick} onBlur={()=>{console.log('blur');}}>
+            <div className="centerHorizontal" ref={dropdownClickable} onClick={dropdownClick} onBlur={()=>{console.log('blur');}}>
                 {children}
             </div>
             <DropdownItems dropdownActive={dropdownActive}>
